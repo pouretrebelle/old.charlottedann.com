@@ -11,3 +11,15 @@
     left: 0;
   }
 }
+
+%trim {
+  > *:first-child {
+    margin-top: 0;
+  }
+  > *:last-child {
+    margin-bottom: 0;
+  }
+}
+@mixin trim {
+  @extend %trim;
+}

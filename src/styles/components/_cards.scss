@@ -24,16 +24,13 @@
 }
 
 .cards {
-  &:after {
-    content: '';
-    display: table;
-    clear: both;
-  }
+  position: relative;
   .card {
     float: left;
     position: relative;
     margin-top: $card-margin;
     &__content {
+      @include trim;
       width: 100%;
       box-sizing: border-box;
       padding: 5%;
@@ -47,24 +44,33 @@
       }
     }
     &--image {
-      .card__image {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
-        transition: opacity 0.2s linear;
+      @include bp(one) {
+        .card__content {
+          position: absolute;
+          width: 100%;
+          background: rgba($bg-body, 0.8);
+        }
       }
-      .card__content {
-        opacity: 0;
-        transition: opacity 0.2s linear;
-      }
-      &:hover {
+      @include bp(two-plus) {
         .card__image {
-          opacity: 0.2;
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+          transition: opacity 0.2s linear;
         }
         .card__content {
-          opacity: 1;
+          opacity: 0;
+          transition: opacity 0.2s linear;
+        }
+        &:hover {
+          .card__image {
+            opacity: 0.2;
+          }
+          .card__content {
+            opacity: 1;
+          }
         }
       }
     }
@@ -76,45 +82,81 @@
 }
 
 .cards {
+  @include bp(two-plus) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: -$card-margin;
+  }
   @include bp(three) {
-    padding-right: $card-margin * 2;
     .card {
       width: 33.3%;
+      width: calc(33.3% - #{2 / 3 * $card-margin});
       padding-bottom: 33.3% * $card-aspect-ratio;
-      &:nth-child(-n + 3) {
-        margin-top: 0;
+      padding-bottom: calc(#{33.3% * $card-aspect-ratio} - #{2 / 3 * $card-margin * $card-aspect-ratio});
+      &--about {
+        position: relative;
+        top: $card-margin / 2;
+        left: $card-margin / 2;
       }
-      @for $i from 2 through 3 {
-        &:nth-child(3n + #{$i}) {
-          left: $card-margin * ($i - 1);
-        }
+      &--codepen {
+        order: 7;
+      }
+      &--youtube {
+        order: 13;
+      }
+      &--twitter {
+        order: 15;
+      }
+      &--instagram {
+        order: 17;
       }
     }
   }
   @include bp(two) {
-    padding-right: $card-margin;
     .card {
       width: 50%;
+      width: calc(50% - #{1 / 2 * $card-margin});
       padding-bottom: 50% * $card-aspect-ratio;
-      &:nth-child(-n + 2) {
-        margin-top: 0;
+      padding-bottom: calc(#{50% * $card-aspect-ratio} - #{1 / 2 * $card-margin * $card-aspect-ratio});
+      &--about {
+        width: 100%;
       }
-      &:nth-child(2n) {
-        left: $card-margin;
+      &--codepen {
+        order: 3;
+      }
+      &--youtube {
+        order: 7;
+      }
+      &--twitter {
+        order: 15;
+      }
+      &--instagram {
+        order: 19;
       }
     }
   }
   @include bp(one) {
+    justify-content: center;
     .card {
       width: 100%;
       height: auto;
-      &:first-child {
-        margin-top: 0;
+      &--about {
+        margin-top: 3em;
+      }
+      &--codepen {
+        margin-left: 10%;
+      }
+      &--social {
+        width: 20%;
+        margin-bottom: 2em;
+        .svg-icon {
+          width: 1.5em;
+        }
+        h3 {
+          display: none;
+        }
       }
     }
   }
-}
-
-body {
-  margin: 0;
 }
