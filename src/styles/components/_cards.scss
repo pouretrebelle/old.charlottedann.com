@@ -1,0 +1,120 @@
+@mixin bp($point) {
+  $one: $bp-card-two;
+  $two: $bp-card-three;
+  @if $point == one {
+    @media (max-width: $one) {
+      @content;
+    }
+  }
+  @if $point == two {
+    @media (min-width: $one + 1) and (max-width: $two) {
+      @content;
+    }
+  }
+  @if $point == three {
+    @media (min-width: $two + 1) {
+      @content;
+    }
+  }
+  @if $point == two-plus {
+    @media (min-width: $one + 1) {
+      @content;
+    }
+  }
+}
+
+.cards {
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+  .card {
+    float: left;
+    position: relative;
+    margin-top: $card-margin;
+    &__content {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 5%;
+      text-align: center;
+      z-index: 2;
+      @include bp(two-plus) {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+      }
+    }
+    &--image {
+      .card__image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        transition: opacity 0.2s linear;
+      }
+      .card__content {
+        opacity: 0;
+        transition: opacity 0.2s linear;
+      }
+      &:hover {
+        .card__image {
+          opacity: 0.2;
+        }
+        .card__content {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+.svg-icon {
+  width: 2em;
+}
+
+.cards {
+  @include bp(three) {
+    padding-right: $card-margin * 2;
+    .card {
+      width: 33.3%;
+      padding-bottom: 33.3% * $card-aspect-ratio;
+      &:nth-child(-n + 3) {
+        margin-top: 0;
+      }
+      @for $i from 2 through 3 {
+        &:nth-child(3n + #{$i}) {
+          left: $card-margin * ($i - 1);
+        }
+      }
+    }
+  }
+  @include bp(two) {
+    padding-right: $card-margin;
+    .card {
+      width: 50%;
+      padding-bottom: 50% * $card-aspect-ratio;
+      &:nth-child(-n + 2) {
+        margin-top: 0;
+      }
+      &:nth-child(2n) {
+        left: $card-margin;
+      }
+    }
+  }
+  @include bp(one) {
+    .card {
+      width: 100%;
+      height: auto;
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+body {
+  margin: 0;
+}

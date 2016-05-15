@@ -1,0 +1,54 @@
+extend default
+
+include partials/responsive-image
+
+block content
+  include partials/svg
+  .cards
+    - var cardI = 0
+    - var projectI = 0
+      while cardI < collections.projects.length + 5
+        - cardI++
+        if cardI == 1
+          .card
+            .card__content
+              h1 Charlotte Dann
+              p designer / maker
+              p dreamer / doer
+        else if cardI == 5
+          .card
+            .card__content
+              a(href="http://codepen.io/pouretrebelle/" target="_blank")
+                svg.svg-icon(viewBox="0 0 50 50")
+                  use(xlink:href="#icon-codepen")
+                h3 Code Experiments
+        else if cardI == 9
+          .card
+            .card__content
+              a(href="https://www.youtube.com/chareads" target="_blank")
+                svg.svg-icon(viewBox="0 0 50 50")
+                  use(xlink:href="#icon-youtube")
+                h3 Chareads
+        else if cardI == 11
+          .card
+            .card__content
+              a(href="https://twitter.com/charlotte_dann" target="_blank")
+                svg.svg-icon(viewBox="0 0 50 50")
+                  use(xlink:href="#icon-twitter")
+                h3 Twitter
+        else if cardI == 13
+          .card
+            .card__content
+              a(href="https://instagram.com/charlottedann" target="_blank")
+                svg.svg-icon(viewBox="0 0 50 50")
+                  use(xlink:href="#icon-instagram")
+                h3 Instagram
+        else
+          if collections.projects[projectI]
+            - project = collections.projects[projectI]
+            .card.card--image
+              a(href="#{project.path}")
+                +image('/images/thumbnails/' + project.thumbnail, '(min-width: 700px) 33vw, (min-width: 400px) 50vw, 100vw')(class="card__image" alt=project.title)
+                .card__content
+                  h2= project.title
+            - projectI++

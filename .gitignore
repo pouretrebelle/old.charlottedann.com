@@ -1,0 +1,12 @@
+# Node
+node_modules
+
+# Build
+build
+
+# Content
+src/images/thumbnails/
+src/projects/
+
+# Extensions
+*.psd

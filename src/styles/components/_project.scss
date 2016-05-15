@@ -1,0 +1,37 @@
+.project {
+  &__meta {
+    padding: 10%;
+  }
+  &__return {
+    font-weight: 300;
+  }
+  &__date {
+    font-weight: 300;
+  }
+  &__media {
+    > * {
+      vertical-align: bottom;
+      margin-top: $post-media-margin;
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+  @media (min-width: $bp-project) {
+    &__media {
+      float: left;
+      width: 50%;
+    }
+    &__meta {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      width: 30%;
+      max-width: 300px;
+    }
+  }
+}
+
+.video-wrap {
+  @include fitvids(0.5625);
+}

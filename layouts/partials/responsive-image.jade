@@ -1,0 +1,6 @@
+mixin image(filename, sizes)
+  - if (typeof sizes == 'undefined') sizes = '(min-width: 700px) 50vw, 100vw'
+  - var srcsets = []
+  each size in imageResolutions
+    - srcsets.push(sized(filename, size) + ' ' + size + 'w')
+  img(src="#{sized(filename, imageResolutions[0])}" sizes="#{sizes}" srcset="#{srcsets.join(', ')}")&attributes(attributes)

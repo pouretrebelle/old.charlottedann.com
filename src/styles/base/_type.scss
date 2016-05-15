@@ -1,0 +1,19 @@
+body {
+  font-size: 16px;
+  font-weight: 400;
+  font-family: 'leitura-news', Rockwell, Lucida Bright, serif;
+  color: $text;
+}
+
+p {
+  margin: 0.5em 0;
+}
+
+a {
+  color: $link;
+  text-decoration: none;
+}
+
+h1, h2, h3 {
+  font-weight: 700;
+}
