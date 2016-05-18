@@ -1,0 +1,13 @@
+extend default
+
+block content
+  .project
+    .project__meta
+      h4.project__return
+        a(href="/") back to charlottedann.com
+      h1.project__title= title
+      p.project__description= description
+      - year = date.toString().split(' ')[3]
+      h3.project__date= year
+    .project__media--full
+      | !{contents}
