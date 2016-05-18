@@ -7,7 +7,8 @@ block content
         a(href="/") back to charlottedann.com
       h1.project__title= title
       p.project__description= description
+      p.project__materials= materials
       - year = date.toString().split(' ')[3]
-      h3.project__date= year
+      p.project__date= year
     .project__media
       | !{contents}

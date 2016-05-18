@@ -5,8 +5,10 @@
   &__return {
     font-weight: 300;
   }
-  &__date {
+  &__materials, &__date {
+    margin: 0;
     font-weight: 300;
+    font-size: 0.9em;
   }
   &__media, &__media--full {
     > * {
