@@ -10,3 +10,6 @@ src/projects/
 
 # Extensions
 *.psd
+
+# Private
+secret.yml

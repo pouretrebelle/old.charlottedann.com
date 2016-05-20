@@ -12,6 +12,7 @@
   "devDependencies": {
     "autoprefixer": "^6.3.6",
     "jade": "^1.11.0",
+    "js-yaml": "^3.6.1",
     "metalsmith": "^2.1.0",
     "metalsmith-autoprefixer": "^1.1.0",
     "metalsmith-collections": "^0.7.0",

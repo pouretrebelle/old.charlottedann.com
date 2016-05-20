@@ -11,6 +11,8 @@ var sass         = require('metalsmith-sass');
 var autoprefixer = require('metalsmith-autoprefixer');
 var imagemin     = require('metalsmith-imagemin');
 var convert      = require('./scripts/metalsmith-convert-gm.js');
+var yaml         = require('js-yaml');
+var fs           = require('fs');
 
 var imageResolutions = [400, 600, 800, 1000, 1200, 1500, 2000, 3000, 4000];
 var imageConvertions = [];
@@ -87,6 +89,7 @@ Metalsmith(__dirname)
   // images
   .use(define({
     imageResolutions: imageResolutions,
+    secret: yaml.safeLoad(fs.readFileSync('secret.yml')),
     home: 'http://charlottedann.com/',
     sized: function(filename, suffix) {
       var name = filename.split('.');
