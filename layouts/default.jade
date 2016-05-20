@@ -1,12 +1,15 @@
 doctype html
 html
   head
-    title Charlotte Dann
+    meta(charset="UTF-8")
+    block title
+      title Charlotte Dann
     neta(name="viewport" content="width=device-width")
     meta(name="author" content="Charlotte Dann")
     meta(name="description" content="Charlotte Dann is a web developer, jewellery designer, and all round cool gal. She likes making objects out of glass and silver, front-ends with a healthy serving of sass, and back-ends not really at all. I jest, she harbours a secret desire to be a proper programmer and not a mere maker of pretty things.")
     link(rel="author" href="https://plus.google.com/+CharlotteDann/posts")
     link(rel="stylesheet" href="/styles/main.css")
+    link(rel="shortcut icon" href="/images/favicon.ico")
     link(rel="icon" type="image/png" href="/images/favicon-16.png" sizes="16x16")
     link(rel="icon" type="image/png" href="/images/favicon-32.png" sizes="32x32")
     link(rel="icon" type="image/png" href="/images/favicon-64.png" sizes="64x64")
@@ -16,6 +19,8 @@ html
     link(rel="apple-touch-icon" href="/images/favicon-114.png" sizes="114x114")
     script.
       document.documentElement.className += ' wf-loading'
+    block meta
+
   body
 
     block content

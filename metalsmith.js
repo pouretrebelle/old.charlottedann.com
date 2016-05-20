@@ -16,42 +16,62 @@ var imageResolutions = [400, 600, 800, 1000, 1200, 1500, 2000, 3000, 4000];
 var imageConvertions = [];
 imageResolutions.forEach(function(res) {
   imageConvertions.push({
-      src: 'projects/**/*.gif',
-      target: 'gif',
-      resize: {
-        width:  res,
-        height: res*3,
-      },
-      nameFormat: '%b_' + res + '%e',
-    });
+    src: 'projects/**/*.gif',
+    target: 'gif',
+    resize: {
+      width:  res,
+      height: res*3,
+    },
+    nameFormat: '%b_' + res + '%e',
+  });
   imageConvertions.push({
-      src: 'projects/**/*.png',
-      target: 'png',
-      resize: {
-        width:  res,
-        height: res*3,
-      },
-      nameFormat: '%b_' + res + '%e',
-    });
+    src: 'projects/**/*.png',
+    target: 'png',
+    resize: {
+      width:  res,
+      height: res*3,
+    },
+    nameFormat: '%b_' + res + '%e',
+  });
   imageConvertions.push({
-      src: 'projects/**/*.jpg',
-      target: 'jpg',
-      resize: {
-        width:  res,
-        height: res*3,
-      },
-      nameFormat: '%b_' + res + '%e',
-    });
+    src: 'projects/**/*.jpg',
+    target: 'jpg',
+    resize: {
+      width:  res,
+      height: res*3,
+    },
+    nameFormat: '%b_' + res + '%e',
+  });
   imageConvertions.push({
-      src: 'images/thumbnails/*.jpg',
-      target: 'jpg',
-      resize: {
-        width:   res,
-        height:  res * 0.618,
-        gravity: 'NorthWest',
-      },
-      nameFormat: '%b_' + res + '%e',
-    });
+    src: 'images/thumbnails/*.jpg',
+    target: 'jpg',
+    resize: {
+      width:   res,
+      height:  res * 0.618,
+      gravity: 'NorthWest',
+    },
+    nameFormat: '%b_' + res + '%e',
+  });
+});
+imageConvertions.push({
+  src: 'images/thumbnails/*.jpg',
+  target: 'jpg',
+  resize: {
+    width:   1200,
+    height:  630,
+    gravity: 'Center',
+  },
+  nameFormat: '%b_facebook%e',
+});
+imageConvertions.push({
+  src: 'images/thumbnails/*.jpg',
+  target: 'jpg',
+  resize: {
+    width:   800,
+    height:  320,
+    gravity: 'Center',
+  },
+  nameFormat: '%b_twitter%e',
 });
 
 Metalsmith(__dirname)
@@ -67,6 +87,7 @@ Metalsmith(__dirname)
   // images
   .use(define({
     imageResolutions: imageResolutions,
+    home: 'http://charlottedann.com/',
     sized: function(filename, suffix) {
       var name = filename.split('.');
       return name[0] + '_' + suffix + '.' + name[1];
